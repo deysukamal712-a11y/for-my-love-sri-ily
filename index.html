@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Her</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    transition: background 1s ease;
+    color: rgba(255,255,255,0.95);
+  }
+
+  .screen {
+    height: 100vh;
+    width: 100vw;
+    padding: 60px 50px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .text {
+    font-size: 20px;
+    line-height: 1.9;
+    max-width: 900px;
+  }
+
+  .buttons {
+    margin-top: 40px;
+  }
+
+  button {
+    background: rgba(255,255,255,0.18);
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 30px;
+    font-size: 16px;
+    margin: 10px 14px 0 0;
+    cursor: pointer;
+  }
+</style>
+</head>
+
+<body>
+
+<div id="app"></div>
+
+<script>
+let index = 0;
+
+const slides = [
+{bg:"#020617", text:`Hey.<br><br>This is not something rushed. This is me choosing to slow down and speak with intention, because you are not a moment — you are a presence.`, btns:["Continue"]},
+
+{bg:"#0f172a", text:`If love were easy, it wouldn’t feel this deep. And if it were shallow, it wouldn’t change the way I think about tomorrow.`, btns:["Go on"]},
+
+{bg:"#1e293b", text:`Before anything else, tell me one thing.`, btns:["I’m here","I’m listening"]},
+
+{bg:"#020617", text:`Good. Because what I’m about to say isn’t noise. It’s weight.`, btns:["Okay"]},
+
+{bg:"#111827", text:`I don’t love you in fragments. I love you in entirety — the loud parts, the quiet pauses, the unspoken worries you never ask anyone to hold.`, btns:["Continue"]},
+
+{bg:"#1f2937", text:`Love, to me, is not a feeling that visits. It is a discipline. It is the decision to stay soft in a world that rewards indifference. And you are the reason I choose that discipline.`, btns:["Keep reading"]},
+
+{bg:"#020617", text:`Let me ask you something honestly.`, btns:["Ask"]},
+
+{bg:"#0b132b", text:`Do you believe love should feel safe?`, btns:["Yes","I think so"]},
+
+{bg:"#312e81", text:`Good. Because chaos was never my goal. Peace was. And peace looks like you sitting beside my thoughts without disturbing them.`, btns:["Continue"]},
+
+{bg:"#020617", text:`I imagine a future where love is quiet but unbreakable. Where effort isn’t announced — it’s assumed. Where reassurance isn’t begged for — it’s given freely.`, btns:["Go on"]},
+
+{bg:"#111827", text:`I’m working hard. Not just for success, but for stability. For the ability to look at you one day and know I can protect what we build, not gamble with it.`, btns:["Continue"]},
+
+{bg:"#1f2937", text:`Some people chase love like excitement. I choose love like responsibility. Like home.`, btns:["Continue"]},
+
+{bg:"#020617", text:`Another honest question.`, btns:["Okay"]},
+
+{bg:"#0f172a", text:`Do you know how rare it is to feel understood without explaining everything?`, btns:["Yes","I’m learning"]},
+
+{bg:"#020617", text:`That rarity — that quiet understanding — that is love to me. And it only exists because you exist.`, btns:["Continue"]},
+
+{bg:"#111827", text:`Love is waking up and choosing patience. Love is listening even when pride wants to interrupt. Love is growth that hurts but heals. And love, in its truest form, is you.`, btns:["Continue"]},
+
+{bg:"#1f2937", text:`You are not a chapter. You are the reason the story slows down and becomes intentional.`, btns:["Go on"]},
+
+{bg:"#020617", text:`If the world ever convinces you that you’re too much, remember this: you were never too much for someone who wanted depth.`, btns:["Continue"]},
+
+{bg:"#0b132b", text:`Tell me something.`, btns:["What?"]},
+
+{bg:"#312e81", text:`Do you feel seen here?`, btns:["Yes","I do now"]},
+
+{bg:"#020617", text:`Good. Because being seen is the foundation of everything I want to build with you.`, btns:["Continue"]},
+
+{bg:"#111827", text:`Love isn’t poetry because it sounds beautiful. It becomes poetry when it stays, when it sacrifices, when it chooses understanding over ego — and that is how I love you.`, btns:["Continue"]},
+
+{bg:"#1f2937", text:`I don’t promise perfection. I promise accountability. I promise growth. I promise not disappearing when things get hard.`, btns:["Continue"]},
+
+{bg:"#020617", text:`Sometimes love is loud. Most times, it’s quiet consistency. And I want to give you the kind that lasts longer than excitement.`, btns:["Go on"]},
+
+{bg:"#0f172a", text:`Another pause.`, btns:["Okay"]},
+
+{bg:"#020617", text:`If love were a definition, it wouldn’t be fireworks. It would be trust. It would be effort repeated daily. It would be choosing one person even when no one is watching. And for me — that definition has your name written all over it.`, btns:["Continue"]},
+
+{bg:"#111827", text:`I don’t want to rush time. I want to build something that survives it.`, btns:["Continue"]},
+
+{bg:"#1f2937", text:`You deserve someone who doesn’t just want you — but plans for you.`, btns:["Continue"]},
+
+{bg:"#020617", text:`And I am planning. Quietly. Seriously. Intentionally.`, btns:["Continue"]},
+
+{bg:"#0b132b", text:`Let me ask you one last thing.`, btns:["Okay"]},
+
+{bg:"#020617", text:`Would you stay and keep choosing something real with me?`, btns:["Yes","I’m already here"]},
+
+{bg:"#111827", text:`Then let’s do this slowly. Properly. Without fear. Without rushing. Together.`, btns:["Continue"]},
+
+{bg:"#000000", text:`This is not the end. This is the beginning I wanted to be honest about.`, btns:["Finish"]},
+
+{bg:"#000000", text:`Thank you for staying long enough to read my heart.`, btns:["❤️"]}
+];
+
+function render() {
+  const s = slides[index];
+  document.body.style.background = s.bg;
+  document.getElementById("app").innerHTML = `
+    <div class="screen">
+      <div class="text">${s.text}</div>
+      <div class="buttons">
+        ${s.btns.map(b=>`<button onclick="next()">${b}</button>`).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function next() {
+  if (index < slides.length - 1) {
+    index++;
+    render();
+  }
+}
+
+render();
+</script>
+
+</body>
+</html>
